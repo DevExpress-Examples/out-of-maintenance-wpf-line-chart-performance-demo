@@ -1,0 +1,47 @@
+<Window x:Class="ChartLineRendering.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" 
+        mc:Ignorable="d"
+        Title="MainWindow" Height="640" Width="1024">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <dxc:ChartControl Grid.Row="0" IsDirectXSurfaceRendering="{Binding ElementName=cbRenderMode, Path=IsChecked}">
+            <dxc:XYDiagram2D EnableAxisXNavigation="True" EnableAxisYNavigation="True">
+                <dxc:LineSeries2D DataSource="{Binding LineData}" ArgumentDataMember="X" ValueDataMember="Y"/>
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D>
+                        <dxc:AxisX2D.VisualRange>
+                            <dxc:Range MinValue="2000" MaxValue="16000"/>
+                        </dxc:AxisX2D.VisualRange>
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+        <dxc:ChartControl Grid.Row="1" IsDirectXSurfaceRendering="{Binding ElementName=cbRenderMode, Path=IsChecked}">
+            <dxc:XYDiagram2D EnableAxisXNavigation="True" EnableAxisYNavigation="True">
+                <dxc:SplineSeries2D DataSource="{Binding SplineData}" ArgumentDataMember="X" ValueDataMember="Y"/>
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D>
+                        <dxc:AxisX2D.VisualRange>
+                            <dxc:Range MinValue="2000" MaxValue="16000"/>
+                        </dxc:AxisX2D.VisualRange>
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+                <dxc:XYDiagram2D.AxisY>
+                    <dxc:AxisY2D>
+                        <dxc:AxisY2D.WholeRange>
+                            <dxc:Range dxc:AxisY2D.AlwaysShowZeroLevel="False"/>
+                        </dxc:AxisY2D.WholeRange>
+                    </dxc:AxisY2D>
+                </dxc:XYDiagram2D.AxisY>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+        <CheckBox x:Name="cbRenderMode" Content="IsDirectXSurfaceRendering" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,0,10,10"/>
+    </Grid>
+</Window>
